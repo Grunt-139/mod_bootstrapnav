@@ -69,6 +69,15 @@ defined('_JEXEC') or die;
 */
 ?>
 
+.dropdown-menu{
+    background: <?php echo $drop_back_color ?> !important;
+}
+
+.dropdown-menu .nav-link,
+.dropdown-menu .sub-menu-item{
+    color:<?php echo $drop_color ?> !important;
+}
+
 .dropdown-submenu {
     position: relative;
 }
@@ -118,32 +127,34 @@ defined('_JEXEC') or die;
 
 </style>
 <?php if($nav_type == 'navbar') : ?>
-<div class="navbar <?php echo $fixed; ?>" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <?php if($brand_type == 'text') : ?>
-                <a class="navbar-brand" href="index.php"><?php echo $brand_text; ?></a>
-            <?php elseif($brand_type == 'image') : ?>
-                <a class="navbar-brand" href="index.php"><img src="<?php echo $brand_image; ?>" /></a>
+<div class="navbar <?php echo $navbar_color_scheme;?> <?php echo $expansion ;?> <?php echo $fixed; ?>" role="navigation">
+
+    <div class="navbar-header <?php echo $float_brand; ?>">
+            <?php if($brand_type == 'image') : ?>
+                    <a class="navbar-brand" href="index.php"><img src="<?php echo $brand_image; ?>" /></a>
+            <?php elseif($brand_type == 'text') : ?>
+                    <a class="navbar-brand" href="index.php"><?php echo $brand_text; ?></a>
             <?php endif; ?>
-        </div><!-- /.navbar-header -->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav <?php echo $float; ?>">
-			<?php
-				
-				$bootstrap_menu_generator = new ModBootStrapMenuGenerator();
-			
-				$bootstrap_menu = $bootstrap_menu_generator->Build_BootStrap_Menu($list, $path, $active_id, $show_subnav);
-				echo $bootstrap_menu;
-			?>
-            </ul>
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>  
+                <span class="navbar-toggler-icon"></span>
+        </button>
+    </div><!-- /.navbar-header -->
+
+
+    <div class="collapse navbar-collapse">
+
+        <ul class="navbar-nav <?php echo $float_links; ?>">
+        <li class="nav-item active">
             <?php
+                
+                $bootstrap_menu_generator = new ModBootStrapMenuGenerator();
+            
+                $bootstrap_menu = $bootstrap_menu_generator->Build_BootStrap_Menu($list, $path, $active_id, $show_subnav);
+                echo $bootstrap_menu;
+            ?>
+        </ul>
+        <?php
                 //Load Menu-Right Module
                 $modules = JModuleHelper::getModules("menu-right");
                 if($modules){
@@ -156,9 +167,9 @@ defined('_JEXEC') or die;
                     }
                 }
             ?>
-        </div><!--/.nav-collapse -->
-    </div><!--Container-->
-    </div><!-- /.navbar -->
+    </div><!--/.nav-bar collapse-->
+
+</div><!--/nav-bar-->
     <?php else : ?>
         <div class="list-group">
             <?php foreach ($list as $i => &$item) : ?>

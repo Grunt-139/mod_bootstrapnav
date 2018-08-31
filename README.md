@@ -1,5 +1,21 @@
 # Joomla Bootstrap Nav Module #
 
+Forked the repository after doing extensive updates so it could work with the most recent version of Bootstrap.
+
+Added Features:
+    - Expansion options for the navbar
+    - Selection for colour scheme (specifically alters the appearance of the toggler when collapsed)
+    - Background colour and text colour for dropdown sub menus
+    - Float options
+
+Working on:
+    - Bugs with sub menus (still not appearing correctly)
+    - Floating the contents of the navbar so brand and content can be in different locations
+    - Supporting both a logo and text at same time for brand
+
+Below is Brad Traversy's original readme
+
+
 **Bootstrapnav** is a module for Joomla 2.5 and Joomla 3.x which takes place of the core Joomla menu module and uses a Bootstrap Navbar with dropdown functionality.
 
 

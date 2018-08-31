@@ -217,8 +217,8 @@ class ModBootStrapMenuGenerator
             if ($this->Is_Joomla_Item_New($item, 'first_level')) {
                 
                 $rendered_menu_item = $this->Build_BootStrap_MenuItem($item, $class, $item_list, $show_subnav);
-                
                 $bootstrap_menu[] = $rendered_menu_item;
+
                 
             }
             
@@ -246,11 +246,13 @@ class ModBootStrapMenuGenerator
      */
     protected function Create_BootStrap_Menu_Item($item, $item_class = '', $link_class = '', $link_title = '', $link_data = '')
     {
-        
+
         if ($this->Is_Joomla_Item_New($item, 'created')) {
             
-            $properties['li-class'] = $item_class ? "class=\"$item_class\"" : "";
+            $properties['li-class'] = $item_class ? "class='{$item_class} nav-item'":"";
+
             $properties['li-id']    = "id=\"bootstrap_li_menu_item_{$item->id}\"";
+
             
             $joomla_link_item = $this->Create_BootStrap_Menu_Link($item->title, $item->flink, $link_class, "bootstrap_a_menu_item_{$item->id}", $link_title, $link_data);
             
@@ -279,8 +281,7 @@ class ModBootStrapMenuGenerator
      */
     protected function Create_BootStrap_Menu_Link($link_content = '', $link_href = '', $link_class = '', $link_id = '', $link_title = '', $link_data = '')
     {
-        
-        $properties['class'] = $link_class ? "class=\"$link_class\"" : "";
+        $properties['class'] = $link_class ? "class='{$link_class} nav-link'" : "class=nav-link";
         $properties['id']    = $link_id ? "id=\"{$link_id}\"" : "";
         $properties['title'] = $link_title ? "title=\"$link_title\"" : "";
         $properties['href']  = $link_href ? "href=\"{$link_href}\"" : "href=\"#\"";
@@ -361,7 +362,7 @@ class ModBootStrapMenuGenerator
             $item_class     = trim($item_class);
             $css_item_class = "class=\"{$item_class}\"";
         } else {
-            $css_item_class = "";
+            $css_item_class = "nav-item";
         }
         
         if (!$item->parent) {
@@ -388,7 +389,7 @@ class ModBootStrapMenuGenerator
                 
                 if ($item->level == 1) {
                     $dropdown_properties['multi-level'] = "class=\"dropdown-menu multi-level\"";
-                    $dropdown_properties['sub-level']   = $item_class ? $css_item_class : "";
+                    $dropdown_properties['sub-level']   = $item_class ? $css_item_class : "class = \"nav-item dropdown\" ";
                     $dropdown_properties['caret']       = "<span class=\"caret_spacer\"></span><b class=\"caret\"></b>";
                 } else {
                     $dropdown_properties['multi-level'] = "class=\"dropdown-menu\"";
@@ -397,7 +398,7 @@ class ModBootStrapMenuGenerator
                 }
                 
                 $menu_item[] = "<li {$dropdown_properties['sub-level']} >";
-                $menu_item[] = $this->Create_BootStrap_Menu_Link("{$item->title}{$dropdown_properties['caret']}", "#", "$subnav_class dropdown-toggle", "", "", "data-toggle=\"dropdown\"");
+                $menu_item[] = $this->Create_BootStrap_Menu_Link("{$item->title}{$dropdown_properties['caret']}", "#", "$subnav_class nav-link dropdown-toggle", "", "", "data-toggle=\"dropdown\"");
                 $menu_item[] = "<ul {$dropdown_properties['multi-level']} >";
                 
                 foreach ($list as $list_index => $subitem) {
@@ -408,11 +409,32 @@ class ModBootStrapMenuGenerator
                             
                             $item_class .= ' dropdown-sub-menu-item';
                             
+
                             $new_sub_item = $this->Build_BootStrap_MenuItem($subitem, $item_class, $list, $show_subnav, 'sub-menu-item');
+
+                          /*  <li class="dropdown-submenu dropdown-sub-menu-item" >
+                                <a class="sub-menu-item nav-link dropdown-toggle" nav-link   data-toggle="dropdown" href="#" >
+                                    Another Another
+                                </a>
+                                <ul class="dropdown-menu" >
+                                    <li class="dropdown-sub-menu-item" nav-item id="bootstrap_li_menu_item_105" >
+                                        <a class="sub-menu-item" nav-link id="bootstrap_a_menu_item_105"   href="/joomlatest30/index.php/about/another-another/another-another-another" >
+                                            Another Another Another
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-sub-menu-item" nav-item id="bootstrap_li_menu_item_105" >
+                                <a class="sub-menu-item" nav-link id="bootstrap_a_menu_item_105"   href="/joomlatest30/index.php/about/another-another/another-another-another" >
+                                    Another Another Another
+                                </a>
+                            </li>*/
+
                             $menu_item[]  = $new_sub_item;
                             
                         } else {
-                            
+
                             $menu_item[] = $this->Create_BootStrap_Menu_Item($subitem, $item_class, $subnav_class);
                             
                         }
@@ -429,9 +451,20 @@ class ModBootStrapMenuGenerator
         $this->Track_BootStrap_Menu_Item($item);
         
         $rendered_menu_item = implode('', $menu_item);
+
         
         return $rendered_menu_item;
     }
     
+}
+
+
+
+function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 ?>

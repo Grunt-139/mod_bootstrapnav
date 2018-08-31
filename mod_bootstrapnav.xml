@@ -66,6 +66,28 @@
 				</field>
 
 				<field
+					name="active_background_color"
+					type="color"
+					default="#f4f4f4"
+					label="MOD_MENU_FIELD_NAV_ACTIVE_BACKGROUND_COLOR_LABEL"
+					description="MOD_MENU_FIELD_NAV_ACTIVE_BACKGROUND_COLOR_DESC">					
+				</field>
+
+				<field 
+				name="color_scheme"
+				type="list"
+				default="navbar-dark"
+				label="Colour Scheme"
+				description="Affects the menu toggler. Select Dark for dark backgrounds and Light for lighter backgrounds">
+				<option value="navbar-light">
+					Light
+				</option>
+				<option value="navbar-dark">
+					Dark
+				</option>
+				</field>
+
+				<field
 					name="text_color"
 					type="color"
 					default="#333333"
@@ -74,12 +96,21 @@
 				</field>
 
 				<field
-					name="active_background_color"
+					name="drop_background_color"
 					type="color"
-					default="#f4f4f4"
-					label="MOD_MENU_FIELD_NAV_ACTIVE_BACKGROUND_COLOR_LABEL"
-					description="MOD_MENU_FIELD_NAV_ACTIVE_BACKGROUND_COLOR_DESC">					
+					default="#333333"
+					label="MOD_MENU_FIELD_NAV_DROP_BACKGROUND_COLOR_LABEL"
+					description="MOD_MENU_FIELD_NAV_DROP_BACKGROUND_COLOR_DESC">					
 				</field>
+
+				<field
+					name="drop_text_color"
+					type="color"
+					default="#f9f9f9"
+					label="MOD_MENU_FIELD_NAV_DROP_TEXT_COLOR_LABEL"
+					description="MOD_MENU_FIELD_NAV_DROP_TEXT_COLOR_DESC">					
+				</field>
+
 
 				<field
 					name="fixed"
@@ -90,22 +121,58 @@
 					<option
 						value="navbar-default">No</option>
 					<option
-						value="navbar-fixed-top">Fixed Top</option>
+						value="fixed-top">Fixed Top</option>
 					<option
-						value="navbar-fixed-bottom">Fixed Bottom</option>
+						value="fixed-bottom">Fixed Bottom</option>
 				</field>
 
 				<field
-					name="float"
+					name="float_brand"
 					type="list"
-					label="Float Navbar"
+					label="Float Navbar Brand"
+					description="Choose to float nav brand">
+					<option
+						value="">None</option>
+					<option
+						value="mr-auto">Float Right</option>
+											<option
+						value="mx-auto">Float Center</option>
+					<option
+						value="ml-auto">Float Left</option>
+				</field>
+
+				<field
+					name="float_links"
+					type="list"
+					label="Float Navbar Contents"
 					description="Choose to float nav links">
 					<option
 						value="">None</option>
 					<option
-						value="navbar-right">Float Right</option>
+						value="mr-auto">Float Right</option>
+											<option
+						value="mx-auto">Float Center</option>
 					<option
-						value="navbar-left">Float Left</option>
+						value="ml-auto">Float Left</option>
+				</field>
+
+				<field
+					name="expansion"
+					type="list"
+					label="Expansion Options"
+					description="Choose when to expand navbar">
+					<option
+						value="">Never Expand</option>
+					<option
+						value="navbar-expand">Always Expand</option>
+					<option
+						value="navbar-expand-sm">Small</option>
+					<option
+						value="navbar-expand-md">Medium</option>
+					<option
+						value="navbar-expand-lg">Large</option>
+					<option
+						value="navbar-expand-xl">Extra Large</option>
 				</field>
 
 				<field
@@ -113,7 +180,7 @@
 					type="list"
 					default="text"
 					label="Branding Type"
-					description="Choose type of branding. None, image or text">
+					description="Choose type of branding. None, image, text or glyphicon">
 					<option
 						value="none">None</option>
 					<option
@@ -144,6 +211,8 @@
 					<option
 						value="1">Yes</option>
 				</field>
+
+				
 				
 				<field
 					name="show_subnav"

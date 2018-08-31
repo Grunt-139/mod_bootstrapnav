@@ -23,14 +23,19 @@ $class_sfx               = htmlspecialchars($params->get('class_sfx'));
 $nav_type                = $params->get('nav_type');
 $background_color        = $params->get('background_color', '#f9f9f9');
 $text_color              = $params->get('text_color', '#333333');
+$drop_color              = $params->get('drop_text_color','#f9f9f9');
+$drop_back_color         = $params->get('drop_background_color','#eeeeee');
 $active_background_color = $params->get('active_background_color', '#f4f4f4');
 $fixed                   = $params->get('fixed', 'navbar-default');
-$float                   = $params->get('float');
+$float_brand             = $params->get('float_brand');
+$float_links             = $params->get('float_links');
 $brand_type              = $params->get('brand_type');
 $brand_text              = $params->get('brand_text');
 $brand_image             = $params->get('brand_image');
 $use_css                 = $params->get('use_css', 0);
 $show_subnav             = $params->get('show_subnav', 1);
+$expansion               = $params->get('expansion');
+$navbar_color_scheme     = $params->get('color_scheme');
 
 if (count($list)) {
     require JModuleHelper::getLayoutPath('mod_bootstrapnav', $params->get('layout', 'default'));
